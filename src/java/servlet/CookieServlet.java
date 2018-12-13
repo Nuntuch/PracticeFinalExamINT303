@@ -32,38 +32,25 @@ public class CookieServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet CookieServlet</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet CookieServlet at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-
-//เรียกคุ๊กกี้
-        Cookie[] cookieR = request.getCookies();
-        if (cookieR != null) {
+        
+        Cookie cookieR[] = request.getCookies();
+        
+        if (cookieR != null && cookieR.length > 0) {
             for (Cookie cookieL : cookieR) {
-                if (cookieL.getName().endsWith("cookietest")) {
-
+                if (cookieL.getName().equals("cookieS")) {
+                    cookieL.setMaxAge(0);
+                    break;
                 }
+                
             }
-
+            
         } else {
-
-//สร้างคุ๊กกี้
-            Cookie cookieC = new Cookie("cookietest", "value");
-            cookieC.setMaxAge(60 * 60 * 24 * 30);
+            Cookie cookieC = new Cookie("cookieS", "value");
             response.addCookie(cookieC);
-
         }
-
+        
+        
+        getServletContext().getRequestDispatcher("/jsp/cookie.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
