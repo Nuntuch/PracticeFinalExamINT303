@@ -51,6 +51,8 @@ public class CookieServlet extends HttpServlet {
         
         
         getServletContext().getRequestDispatcher("/jsp/cookie.jsp");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
